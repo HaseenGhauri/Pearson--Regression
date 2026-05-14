@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson Correlation + Linear Regression</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pearson Correlation + Linear Regression</h1>
+            <p class="subtitle">Analyze relationship and best-fit line between two variables</p>
+        </header>
+
+        <div class="main">
+            <!-- Input Panel -->
+            <div class="input-panel">
+                <h3>Add Data Points (X, Y)</h3>
+                <div class="input-row">
+                    <input type="number" id="x" placeholder="X value" step="any">
+                    <input type="number" id="y" placeholder="Y value" step="any">
+                </div>
+                <button class="btn-add" onclick="addPoint()">+ Add Pair</button>
+                <div id="input-error" class="error"></div>
+
+                <h3 style="margin-top: 24px;">Observations</h3>
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+
+                <button class="btn-clear" onclick="clearAll()" style="margin-top: 16px;">Clear All Data</button>
+            </div>
+
+            <!-- Results -->
+            <div>
+                <button class="btn-calculate" id="calculate-btn" onclick="calculateCorrelation()" disabled>
+                    Calculate Correlation & Regression
+                </button>
+
+                <div class="results" id="results-panel" style="display:none;">
+                    <h3>Results</h3>
+                    
+                    <div class="stat"><strong>Mean of X:</strong> <span id="mean-x">0</span></div>
+                    <div class="stat"><strong>Mean of Y:</strong> <span id="mean-y">0</span></div>
+                    <div class="stat"><strong>Std Dev of X:</strong> <span id="sd-x">0</span></div>
+                    <div class="stat"><strong>Std Dev of Y:</strong> <span id="sd-y">0</span></div>
+
+                    <div class="correlation" id="correlation-result">r = 0.00</div>
+                    <p id="interpretation" style="text-align:center; font-weight:500;"></p>
+
+                    <div class="equation">
+                        <strong>Regression Line:</strong><br>
+                        <span id="regression-equation">y = mx + b</span>
+                    </div>
+
+                    <h3 style="margin-top: 20px;">Scatter Plot with Regression Line</h3>
+                    <canvas id="scatterChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
